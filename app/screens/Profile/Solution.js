@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import MultipleChoice from "react-native-multiple-choice-picker";
 import {
   View,
@@ -24,7 +24,6 @@ const Solution = ({ route, navigation }) => {
   const [questionCount, setQuestionCount] = useState(0);
   const [allQuestion, setAllQuestion] = useState([]);
   const { examid } = route.params;
-  const [, updateState] = useState();
 
   const fetchSolution = async () => {
     setIsLoading(true);
@@ -47,6 +46,7 @@ const Solution = ({ route, navigation }) => {
       setWrongAnswer(data1);
       setNotAttempted(await JSON.parse(responseData.result[0].notAttemtedArr));
       const datafinal = await updateQuestion();
+
       setAllQuestion(datafinal);
     } catch (error) {
       console.log(error);
@@ -195,106 +195,45 @@ const Solution = ({ route, navigation }) => {
             {allQuestion[questionCount].isOptionImage === "1" ? (
               <MultipleChoice
                 direction={"column"}
-                chosenIndex={parseInt(
-                  allQuestion[questionCount].selectedOption
-                )}
+                chosenIndex={allQuestion[questionCount].selectedOption}
                 choices={[
-                  <View
+                  <Image
                     style={{
-                      backgroundColor:
-                        allQuestion[questionCount].selectedOption == 0
-                          ? allQuestion[questionCount].correctAns == "1"
-                            ? "green"
-                            : "red"
-                          : allQuestion[questionCount].correctAns == "1"
-                          ? "green"
-                          : null,
-                      width: Dimensions.get("window").width,
-                      zIndex: 999,
+                      height: Dimensions.get("window").height * 0.3,
+                      width: Dimensions.get("window").width * 0.6,
                     }}
-                  >
-                    <Image
-                      style={{
-                        height: Dimensions.get("window").height * 0.3,
-                        width: Dimensions.get("window").width * 0.6,
-                      }}
-                      source={{
-                        uri: allQuestion[questionCount].optionAFile,
-                      }}
-                    />
-                  </View>,
-                  <View
+                    source={{
+                      uri: allQuestion[questionCount].optionAFile,
+                    }}
+                  />,
+                  <Image
                     style={{
-                      backgroundColor:
-                        allQuestion[questionCount].selectedOption == 1
-                          ? allQuestion[questionCount].correctAns == "2"
-                            ? "green"
-                            : "red"
-                          : allQuestion[questionCount].correctAns == "2"
-                          ? "green"
-                          : null,
-                      width: Dimensions.get("window").width,
-                      zIndex: 999,
+                      height: Dimensions.get("window").height * 0.3,
+                      width: Dimensions.get("window").width * 0.6,
                     }}
-                  >
-                    <Image
-                      style={{
-                        height: Dimensions.get("window").height * 0.3,
-                        width: Dimensions.get("window").width * 0.6,
-                      }}
-                      source={{
-                        uri: allQuestion[questionCount].optionBFile,
-                      }}
-                    />
-                  </View>,
-                  <View
+                    source={{
+                      uri: allQuestion[questionCount].optionBFile,
+                    }}
+                  />,
+
+                  <Image
                     style={{
-                      backgroundColor:
-                        allQuestion[questionCount].selectedOption == 2
-                          ? allQuestion[questionCount].correctAns == "3"
-                            ? "green"
-                            : "red"
-                          : allQuestion[questionCount].correctAns == "3"
-                          ? "green"
-                          : null,
-                      width: Dimensions.get("window").width,
-                      zIndex: 999,
+                      height: Dimensions.get("window").height * 0.3,
+                      width: Dimensions.get("window").width * 0.6,
                     }}
-                  >
-                    <Image
-                      style={{
-                        height: Dimensions.get("window").height * 0.3,
-                        width: Dimensions.get("window").width * 0.6,
-                      }}
-                      source={{
-                        uri: allQuestion[questionCount].optionCFile,
-                      }}
-                    />
-                  </View>,
-                  <View
+                    source={{
+                      uri: allQuestion[questionCount].optionCFile,
+                    }}
+                  />,
+                  <Image
                     style={{
-                      backgroundColor:
-                        allQuestion[questionCount].selectedOption == 3
-                          ? allQuestion[questionCount].correctAns == "4"
-                            ? "green"
-                            : "red"
-                          : allQuestion[questionCount].correctAns == "4"
-                          ? "green"
-                          : null,
-                      width: Dimensions.get("window").width,
-                      zIndex: 999,
+                      height: Dimensions.get("window").height * 0.3,
+                      width: Dimensions.get("window").width * 0.6,
                     }}
-                  >
-                    <Image
-                      style={{
-                        height: Dimensions.get("window").height * 0.3,
-                        width: Dimensions.get("window").width * 0.6,
-                      }}
-                      source={{
-                        uri: allQuestion[questionCount].optionDFile,
-                      }}
-                    />
-                  </View>,
+                    source={{
+                      uri: allQuestion[questionCount].optionDFile,
+                    }}
+                  />,
                 ]}
               />
             ) : (
@@ -311,7 +250,7 @@ const Solution = ({ route, navigation }) => {
                             : "red"
                           : allQuestion[questionCount].correctAns == "1"
                           ? "green"
-                          : null,
+                          : "white",
                     }}
                   >
                     {allQuestion[questionCount].optionAText}
@@ -325,7 +264,7 @@ const Solution = ({ route, navigation }) => {
                             : "red"
                           : allQuestion[questionCount].correctAns == "2"
                           ? "green"
-                          : null,
+                          : "white",
                     }}
                   >
                     {allQuestion[questionCount].optionBText}
@@ -339,7 +278,7 @@ const Solution = ({ route, navigation }) => {
                             : "red"
                           : allQuestion[questionCount].correctAns == "3"
                           ? "green"
-                          : null,
+                          : "white",
                     }}
                   >
                     {allQuestion[questionCount].optionCText}
@@ -353,7 +292,7 @@ const Solution = ({ route, navigation }) => {
                             : "red"
                           : allQuestion[questionCount].correctAns == "4"
                           ? "green"
-                          : null,
+                          : "white",
                     }}
                   >
                     {allQuestion[questionCount].optionDText}
