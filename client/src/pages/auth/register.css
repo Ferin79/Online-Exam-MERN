@@ -1,0 +1,13 @@
+.main_wrapper {
+  height: 90vh;
+  width: 100%;
+}
+.input-wrapper {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+}

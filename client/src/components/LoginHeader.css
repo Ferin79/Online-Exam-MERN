@@ -1,0 +1,4 @@
+.sidenav {
+  transform: translateX(0%) !important;
+  overflow: hidden !important;
+}

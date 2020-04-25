@@ -1,0 +1,9 @@
+.addQuestion_wrapper {
+  width: 50% !important;
+}
+
+@media (max-width: 789px) {
+  .addQuestion_wrapper {
+    width: 100%;
+  }
+}

@@ -1,0 +1,22 @@
+.main_wrapper_homepage {
+  height: 90vh;
+  width: 100% !important;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+@media (max-width: 789px) {
+  .main_wrapper {
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .text-wrapper h3 {
+    font-size: 30px;
+  }
+  .img-wrapper img {
+    height: 250px;
+    width: 250px;
+  }
+}

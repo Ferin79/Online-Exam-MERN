@@ -1,0 +1,22 @@
+.main_wrapper_login {
+  height: 90vh;
+  width: 50% !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.input-wrapper {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+}
+.input-fields {
+  padding: 20px;
+  width: 80%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}

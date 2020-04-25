@@ -1,0 +1,33 @@
+.col {
+  width: 100% !important;
+}
+.icons-menu-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: auto;
+}
+.item-wrapper {
+  padding: 20px;
+  margin: 50px;
+}
+.item-wrapper:hover {
+  cursor: pointer;
+}
+.item-wrapper h6 {
+  text-align: center;
+}
+@media (max-width: 789px) {
+  .icons-menu-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  .item-wrapper {
+    padding: 0;
+    margin: 30px;
+    width: 50%;
+  }
+}

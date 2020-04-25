@@ -1,0 +1,12 @@
+.configure-wrapper {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.configure-section-1 {
+  margin-top: 50px;
+  width: 40%;
+  height: 100%;
+}
