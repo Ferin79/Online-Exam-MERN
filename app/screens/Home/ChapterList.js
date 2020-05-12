@@ -90,8 +90,18 @@ const ChapterList = ({ route, navigation }) => {
               );
             })
           ) : (
-            <View>
-              <Text>Nothing To Show</Text>
+            <View
+              style={{
+                display: "flex",
+                flex: 1,
+                height: Dimensions.get("window").height,
+                justifyContent: "space-evenly",
+                alignItems: "center",
+              }}
+            >
+              <Text style={{ textAlign: "center", fontSize: 25 }}>
+                Nothing To Show
+              </Text>
             </View>
           )}
         </View>

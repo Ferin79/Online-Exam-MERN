@@ -2,9 +2,9 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeStack from "../routes/HomeStack";
 import ProfileStack from "../routes/ProfileStack";
-import SettingsScreen from "../screens/Settings/SettingsScreen";
 import ExamStack from "../routes/ExamStack";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import SettingStack from "./SettingStack";
 
 const BottomNavigator = () => {
   const BottomNavigation = createBottomTabNavigator();
@@ -40,7 +40,7 @@ const BottomNavigator = () => {
       />
       <BottomNavigation.Screen
         name="Settings"
-        component={SettingsScreen}
+        component={SettingStack}
         options={{
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="settings" color={color} size={size} />

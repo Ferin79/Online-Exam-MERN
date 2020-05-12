@@ -98,6 +98,8 @@ const SignInScreen = ({ navigation }) => {
     try {
       const result = await Google.logInAsync({
         behaviour: "web",
+        androidStandaloneAppClientId:
+          "516153617809-0f1mnh1ipidvonq5mredhhia0o6b6orv.apps.googleusercontent.com",
         androidClientId:
           "516153617809-0f1mnh1ipidvonq5mredhhia0o6b6orv.apps.googleusercontent.com",
         iosClientId:

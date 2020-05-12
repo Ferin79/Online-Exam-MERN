@@ -6,12 +6,7 @@ const mysql = require("mysql");
 //   password: "",
 //   database: "online_mern",
 // });
-// var connection = mysql.createConnection({
-//   host: "sql12.freemysqlhosting.net",
-//   user: "sql12330048",
-//   password: "xFwujdLV5k",
-//   database: "sql12330048",
-// });
+
 var connection = mysql.createConnection({
   host: "remotemysql.com",
   user: "ViiOarPoxW",

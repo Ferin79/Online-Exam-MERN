@@ -45,9 +45,6 @@ const Solution = ({ route, navigation }) => {
       const data1 = JSON.parse(responseData.result[0].wrongAnsArr);
       setWrongAnswer(data1);
       setNotAttempted(await JSON.parse(responseData.result[0].notAttemtedArr));
-      const datafinal = await updateQuestion();
-
-      setAllQuestion(datafinal);
     } catch (error) {
       console.log(error);
       Alert.alert("Server Error");
@@ -87,12 +84,17 @@ const Solution = ({ route, navigation }) => {
       }
     }
 
-    return [...correctAnsArr, ...wrongAnsArr, ...notAttemtedArr];
+    setAllQuestion([...correctAnsArr, ...wrongAnsArr, ...notAttemtedArr]);
   };
 
   useEffect(() => {
     fetchSolution();
   }, []);
+  useEffect(() => {
+    if (questionData.length > 0) {
+      updateQuestion();
+    }
+  }, [questionData, correctAnswer, wrongAnswer, notAttempted]);
 
   const RenderQuestion = () => {
     return (

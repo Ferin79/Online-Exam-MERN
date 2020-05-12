@@ -6,23 +6,69 @@ import {
   ScrollView,
   Dimensions,
   TouchableOpacity,
-  StyleSheet,
+  TextInput,
+  Alert,
 } from "react-native";
 import { Avatar } from "react-native-elements";
 import firebase from "../../config/firebase";
-import { Feather } from "@expo/vector-icons";
+import { Foundation, MaterialCommunityIcons } from "@expo/vector-icons";
+import * as ImagePicker from "expo-image-picker";
+import Constants from "expo-constants";
+import * as Permissions from "expo-permissions";
 
 const ProfileScreen = ({ navigation }) => {
   const [displayName, setDisplayName] = useState(null);
   const [photoURL, setPhotoURL] = useState(null);
+  const [newName, setNewName] = useState("");
+  const [profileImage, setProfileImage] = useState("");
 
   const fetchUserDetails = () => {
     setDisplayName(firebase.auth().currentUser.displayName);
+    setNewName(firebase.auth().currentUser.displayName);
     setPhotoURL(firebase.auth().currentUser.photoURL);
   };
 
+  const getPermissionAsync = async () => {
+    if (Constants.platform.ios) {
+      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+      if (status !== "granted") {
+        alert("Sorry, we need camera roll permissions to make this work!");
+      }
+    }
+  };
+
+  const pickImage = async () => {
+    try {
+      let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+      });
+      if (!result.cancelled) {
+        console.log(result);
+        setProfileImage(result.uri);
+        try {
+          firebase
+            .auth()
+            .currentUser.updateProfile({
+              photoURL: result.uri,
+            })
+            .then(function () {
+              setPhotoURL(firebase.auth().currentUser.photoURL);
+            });
+        } catch (error) {
+          console.log(error);
+          Alert.alert("Error Updating Profile Pic");
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
     fetchUserDetails();
+    getPermissionAsync();
   }, []);
 
   return (
@@ -32,7 +78,7 @@ const ProfileScreen = ({ navigation }) => {
           style={{
             width: Dimensions.get("window").width,
             height: Dimensions.get("window").height * 0.4,
-            backgroundColor: "#000",
+            backgroundColor: "#FDA26B",
             display: "flex",
             flex: 1,
             justifyContent: "center",
@@ -44,33 +90,77 @@ const ProfileScreen = ({ navigation }) => {
             rounded
             title={displayName}
             showEditButton
+            onEditPress={() => pickImage()}
             source={{
               uri:
                 photoURL ||
                 "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg",
             }}
           />
-          <Text style={{ fontSize: 25, color: "#fff", paddingTop: 25 }}>
+          <Text style={{ color: "#fff", paddingTop: 25 }}>
+            {firebase.auth().currentUser.email}
+          </Text>
+          <Text style={{ fontSize: 25, color: "#fff", paddingTop: 10 }}>
             {displayName}
           </Text>
         </View>
 
-        <View style={{ marginVertical: 50 }}>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("ResultList");
+        <View style={{ margin: 50 }}>
+          <View
+            style={{
+              display: "flex",
+              flex: 1,
+              flexDirection: "row",
+              alignItems: "center",
+              marginVertical: 20,
             }}
           >
-            <View style={style.cardStyle}>
-              <Text style={{ fontSize: 20 }}>View Results</Text>
-              <Feather name="chevron-right" size={25} />
-            </View>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => console.log("Here")}>
-            <View style={style.cardStyle}>
-              <Text style={{ fontSize: 20 }}>Send Feedback</Text>
-              <Feather name="chevron-right" size={25} />
+            <MaterialCommunityIcons name="account" size={30} color="#FDA26B" />
+            <TextInput
+              placeholder="Enter Name"
+              value={newName}
+              onChangeText={(event) => {
+                setNewName(event);
+              }}
+              onEndEditing={() => {
+                try {
+                  firebase
+                    .auth()
+                    .currentUser.updateProfile({
+                      displayName: newName,
+                    })
+                    .then(function () {
+                      setNewName(firebase.auth().currentUser.displayName);
+                      setDisplayName(firebase.auth().currentUser.displayName);
+                    })
+                    .catch((error) => {
+                      console.log(error);
+                    });
+                } catch (error) {
+                  Alert.alert("Error Updating Profile Name");
+                  console.log(error);
+                }
+              }}
+              style={{
+                fontSize: 20,
+                paddingLeft: 50,
+              }}
+            />
+          </View>
+          <TouchableOpacity onPress={() => navigation.navigate("ResultList")}>
+            <View
+              style={{
+                display: "flex",
+                flex: 1,
+                flexDirection: "row",
+                alignItems: "center",
+                marginVertical: 20,
+              }}
+            >
+              <Foundation name="results" size={30} color="#FDA26B" />
+              <Text style={{ paddingLeft: 50, fontSize: 20 }}>
+                View All Results
+              </Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -80,18 +170,3 @@ const ProfileScreen = ({ navigation }) => {
 };
 
 export default ProfileScreen;
-
-const style = StyleSheet.create({
-  cardStyle: {
-    display: "flex",
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginHorizontal: 25,
-    marginVertical: 10,
-    padding: 20,
-    borderWidth: 1,
-    borderRadius: 25,
-  },
-});

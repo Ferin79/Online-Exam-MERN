@@ -30,7 +30,7 @@ const HomeScreen = ({ navigation }) => {
         <View style={{ margin: 25 }}>
           <Text style={{ fontSize: 30 }}>Hello</Text>
           <Text style={{ fontSize: 40, fontWeight: "bold" }}>
-            {displayName}
+            {firebase.auth().currentUser.displayName}
           </Text>
         </View>
 

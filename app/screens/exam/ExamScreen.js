@@ -7,6 +7,7 @@ import {
   Alert,
   ImageBackground,
   TouchableOpacity,
+  Dimensions,
 } from "react-native";
 import LoadingScreen from "../Loading";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -151,7 +152,18 @@ const ExamScreen = ({ navigation }) => {
                 );
               })
             ) : (
-              <Text>No Exams Available</Text>
+              <View
+                style={{
+                  display: "flex",
+                  flex: 1,
+                  height: Dimensions.get("window").height,
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Text style={{ fontSize: 25 }}>No Exams Available</Text>
+                <Text style={{ fontSize: 20, margin: 20 }}>Enjoy!!!!!</Text>
+              </View>
             )}
           </ScrollView>
         </PTRView>

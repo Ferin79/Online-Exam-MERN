@@ -1,10 +1,25 @@
 import React from "react";
-import { StyleSheet, View, ActivityIndicator } from "react-native";
+import {
+  StyleSheet,
+  View,
+  ActivityIndicator,
+  Dimensions,
+  Image,
+} from "react-native";
 
 const LoadingScreen = () => {
   return (
     <View style={styles.mainSheet}>
-      <ActivityIndicator size={"large"} />
+      {/* <ActivityIndicator size={"large"} /> */}
+      <Image
+        source={require("../images/splash.gif")}
+        style={{
+          display: "flex",
+          flex: 1,
+          height: Dimensions.get("window").height * 0.8,
+          width: Dimensions.get("window").width * 0.8,
+        }}
+      />
     </View>
   );
 };
@@ -16,6 +31,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
-  }
+    alignItems: "center",
+    backgroundColor: "#fff",
+  },
 });
