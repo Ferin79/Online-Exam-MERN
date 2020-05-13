@@ -12,12 +12,12 @@ const LoadingScreen = () => {
     <View style={styles.mainSheet}>
       {/* <ActivityIndicator size={"large"} /> */}
       <Image
-        source={require("../images/splash.gif")}
+        source={require("../images/book2.gif")}
         style={{
           display: "flex",
           flex: 1,
-          height: Dimensions.get("window").height * 0.8,
-          width: Dimensions.get("window").width * 0.8,
+          height: Dimensions.get("window").height,
+          width: Dimensions.get("window").width,
         }}
       />
     </View>
