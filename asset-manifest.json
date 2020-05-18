@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Ferin79/Online-Exam-MERN/static/css/main.fc5eb00d.chunk.css",
+    "main.js": "/Ferin79/Online-Exam-MERN/static/js/main.8ce79bda.chunk.js",
+    "main.js.map": "/Ferin79/Online-Exam-MERN/static/js/main.8ce79bda.chunk.js.map",
+    "runtime-main.js": "/Ferin79/Online-Exam-MERN/static/js/runtime-main.2671d1cd.js",
+    "runtime-main.js.map": "/Ferin79/Online-Exam-MERN/static/js/runtime-main.2671d1cd.js.map",
+    "static/js/2.cf9f8eb7.chunk.js": "/Ferin79/Online-Exam-MERN/static/js/2.cf9f8eb7.chunk.js",
+    "static/js/2.cf9f8eb7.chunk.js.map": "/Ferin79/Online-Exam-MERN/static/js/2.cf9f8eb7.chunk.js.map",
+    "index.html": "/Ferin79/Online-Exam-MERN/index.html",
+    "precache-manifest.b08e61531f8595249459ace06d3223db.js": "/Ferin79/Online-Exam-MERN/precache-manifest.b08e61531f8595249459ace06d3223db.js",
+    "service-worker.js": "/Ferin79/Online-Exam-MERN/service-worker.js",
+    "static/css/main.fc5eb00d.chunk.css.map": "/Ferin79/Online-Exam-MERN/static/css/main.fc5eb00d.chunk.css.map",
+    "static/js/2.cf9f8eb7.chunk.js.LICENSE.txt": "/Ferin79/Online-Exam-MERN/static/js/2.cf9f8eb7.chunk.js.LICENSE.txt",
+    "static/media/grade.png": "/Ferin79/Online-Exam-MERN/static/media/grade.f05dd860.png",
+    "static/media/homepage.svg": "/Ferin79/Online-Exam-MERN/static/media/homepage.159ae1c5.svg",
+    "static/media/teacher.png": "/Ferin79/Online-Exam-MERN/static/media/teacher.0c3acbae.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2671d1cd.js",
+    "static/js/2.cf9f8eb7.chunk.js",
+    "static/css/main.fc5eb00d.chunk.css",
+    "static/js/main.8ce79bda.chunk.js"
+  ]
+}
