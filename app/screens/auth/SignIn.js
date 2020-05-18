@@ -12,11 +12,8 @@ import {
   ImageBackground,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { SocialIcon } from "react-native-elements";
 import firebase from "../../config/firebase";
 import Loading from "../Loading";
-import * as Google from "expo-google-app-auth";
-import * as Facebook from "expo-facebook";
 
 const SignInScreen = ({ navigation }) => {
   const [windowHeight, setWindowHeight] = useState(200);
@@ -46,94 +43,6 @@ const SignInScreen = ({ navigation }) => {
         });
     } catch (error) {
       console.log(error);
-    }
-    setIsLoading(false);
-  };
-
-  function isUserEqual(googleUser, firebaseUser) {
-    if (firebaseUser) {
-      var providerData = firebaseUser.providerData;
-      for (var i = 0; i < providerData.length; i++) {
-        if (
-          providerData[i].providerId ===
-            firebase.auth.GoogleAuthProvider.PROVIDER_ID &&
-          providerData[i].uid === googleUser.getBasicProfile().getId()
-        ) {
-          return true;
-        }
-      }
-    }
-    return false;
-  }
-
-  function onSignIn(googleUser) {
-    try {
-      console.log("Google Auth Response", googleUser);
-      var unsubscribe = firebase
-        .auth()
-        .onAuthStateChanged(function (firebaseUser) {
-          unsubscribe();
-          if (!isUserEqual(googleUser, firebaseUser)) {
-            var credential = firebase.auth.GoogleAuthProvider.credential(
-              googleUser.idToken,
-              googleUser.accessToken
-            );
-            firebase
-              .auth()
-              .signInWithCredential(credential)
-              .then(function () {})
-              .catch(function (error) {
-                console.log(error);
-              });
-          } else {
-            console.log("User already signed-in Firebase.");
-          }
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  const loginWithGoogle = async () => {
-    setIsLoading(true);
-    try {
-      const result = await Google.logInAsync({
-        behaviour: "web",
-        androidStandaloneAppClientId:
-          "516153617809-0f1mnh1ipidvonq5mredhhia0o6b6orv.apps.googleusercontent.com",
-        androidClientId:
-          "516153617809-0f1mnh1ipidvonq5mredhhia0o6b6orv.apps.googleusercontent.com",
-        iosClientId:
-          "516153617809-nbtfb2v75lapnp0rm3dt8ec1n9fnnsvj.apps.googleusercontent.com",
-        scopes: ["profile", "email"],
-      });
-      if (result.type === "success") {
-        onSignIn(result);
-        return result.accessToken;
-      } else {
-        return { cancelled: true };
-      }
-    } catch (e) {
-      console.log(e);
-    }
-    setIsLoading(false);
-  };
-  const loginWithFacebook = async () => {
-    setIsLoading(true);
-    try {
-      await Facebook.initializeAsync("1530903700446461");
-      const { type, token } = await Facebook.logInWithReadPermissionsAsync({
-        permissions: ["public_profile"],
-      });
-      if (type === "success") {
-        const response = await fetch(
-          `https://graph.facebook.com/me?access_token=${token}`
-        );
-        const cred = firebase.auth.FacebookAuthProvider.credential(token);
-        firebase.auth().signInWithCredential(cred);
-        console.log(await response.json());
-      }
-    } catch (error) {
-      alert(`Facebook Login Error: ${error}`);
     }
     setIsLoading(false);
   };
@@ -269,20 +178,6 @@ const SignInScreen = ({ navigation }) => {
                   />
                 </View>
               </TouchableOpacity>
-              <View>
-                <SocialIcon
-                  title="Sign In With Google"
-                  button
-                  type="google"
-                  onPress={loginWithGoogle}
-                />
-                <SocialIcon
-                  title="Sign In With Facebook"
-                  button
-                  type="facebook"
-                  onPress={loginWithFacebook}
-                />
-              </View>
               <TouchableOpacity onPress={() => navigation.push("Sign Up")}>
                 <View>
                   <Text

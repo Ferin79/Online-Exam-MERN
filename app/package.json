@@ -9,13 +9,15 @@
   },
   "dependencies": {
     "@react-native-community/masked-view": "0.1.5",
+    "@react-native-firebase/analytics": "^7.0.1",
     "@react-navigation/bottom-tabs": "^5.0.5",
     "@react-navigation/native": "^5.0.5",
     "@react-navigation/stack": "^5.0.5",
     "expo": "^36.0.0",
     "expo-ads-admob": "~8.0.0",
-    "expo-facebook": "~8.0.0",
-    "expo-google-app-auth": "^8.0.1",
+    "expo-constants": "~8.0.0",
+    "expo-image-picker": "~8.0.1",
+    "expo-permissions": "~8.0.0",
     "expo-web-browser": "~8.0.0",
     "firebase": "^7.11.0",
     "prop-types": "^15.7.2",
@@ -31,10 +33,7 @@
     "react-native-safe-area-context": "0.6.0",
     "react-native-screens": "2.0.0-alpha.12",
     "react-native-web": "^0.11.7",
-    "react-native-webview": "7.4.3",
-    "expo-image-picker": "~8.0.1",
-    "expo-permissions": "~8.0.0",
-    "expo-constants": "~8.0.0"
+    "react-native-webview": "7.4.3"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",

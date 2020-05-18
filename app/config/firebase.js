@@ -1,13 +1,12 @@
 import * as firebase from "firebase";
 var firebaseConfig = {
-  apiKey: "AIzaSyCNy4sFqCjh3Tuu89T3xb1dm5LA2EtK1hU",
-  authDomain: "stray-cattle-75c17.firebaseapp.com",
-  databaseURL: "https://stray-cattle-75c17.firebaseio.com",
-  projectId: "stray-cattle-75c17",
-  storageBucket: "stray-cattle-75c17.appspot.com",
-  messagingSenderId: "53528137080",
-  appId: "1:53528137080:web:00a7e104996683bebd8c8d",
-  measurementId: "G-Y7YYNXVZR0"
+  apiKey: "AIzaSyDOdjTJEqjAyUHoEgxqXuvyAx-tq89jNvg",
+  authDomain: "gravity-education-5e4b9.firebaseapp.com",
+  databaseURL: "https://gravity-education-5e4b9.firebaseio.com",
+  projectId: "gravity-education-5e4b9",
+  storageBucket: "gravity-education-5e4b9.appspot.com",
+  messagingSenderId: "907639568259",
+  appId: "1:907639568259:web:8f9c2aec10984bd75928b6",
 };
 
 if (!firebase.apps.length) {

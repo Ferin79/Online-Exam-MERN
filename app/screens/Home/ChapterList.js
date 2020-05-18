@@ -63,7 +63,7 @@ const ChapterList = ({ route, navigation }) => {
                 <TouchableOpacity
                   key={data.id}
                   onPress={() => {
-                    navigation.navigate("VideoPlayer");
+                    Alert.alert("Video are coming Soon");
                   }}
                 >
                   <View
